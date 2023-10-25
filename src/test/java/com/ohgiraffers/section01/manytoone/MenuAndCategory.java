@@ -13,11 +13,11 @@ public class MenuAndCategory {//Category를 참조하는  MenuAndCategory 엔티
 
     private int menuPrice;
 
-    //메뉴 클래스에서 카테고리르 참조하는게 다중성을 가지고있다.
+    //메뉴 클래스에서 카테고리를 참조하는게 다중성을 가지고있다.
 
     @ManyToOne(cascade = CascadeType.PERSIST)// CascadeType.PERSIST:저장시 연속성 전이 //AssociationMapping할때는 다중성에 대한 표기를 해줘야한다.
-    @JoinColumn(name = "categoryCode") //조인할때 컬럼 명시. FK에 해당하는 컬럼명 //자동으로 카멜케이스를 언더바로 바꿔주고 있으서 카멜케이스로 작성해준다.
-    private  Category category;
+    @JoinColumn(name = "categoryCode") //조인할때 컬럼 명시. FK에 해당하는 컬럼명 //설정에서 자동으로 카멜케이스를 언더바로 바꿔주고 있으서 카멜케이스로 작성해준다.
+    private  Category category;//카테고리 엔티티를 참조하도록 작성
 
     private String orderableStatus;
 

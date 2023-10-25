@@ -68,8 +68,8 @@ public class OneToManyAssociationTests {
         categoryAndMenu.setRefCategoryCode(1);
 
         //List안에menu에 값을 넣어서 설정해줘야한다.
-        List<Menu>menuList = new ArrayList<>();
-        Menu menu = new Menu();
+        List<Menu> menuList = new ArrayList<>();//List안에 Menu를 담는다
+        Menu menu = new Menu();//List안에 Menu를 담는다
         menu.setMenuCode(777);
         menu.setMenuName("일대다아이스크림");
         menu.setCategoryCode(categoryAndMenu.getCategoryCode());

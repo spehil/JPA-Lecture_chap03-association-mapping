@@ -1,27 +1,31 @@
-package com.ohgiraffers.section01.manytoone;
+package com.ohgiraffers.section03.bidirection;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
-@Entity(name = "category_section01")
-@Table(name = "tbl_category")//테이블이름을 써준다.
+@Entity(name = "bidirection-category")
+@Table(name = "tbl_category")
 public class Category {
 
-    @Id//primaryKey
-    //카멜케이스를 언더스로어로 자동 매핑해주는 설정을 넣어줬으므로 @Column 어노테이션을 작성하지 않아도 규칙에 맞게 작성만했으면 자동매핑된다. -><property name="hibernate.physical_naming_strategy" value="org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy"/>
-    private int categoryCode;
-    private String categoryName;
+    @Id
+    private  int categoryCode;
+    private  String categoryName;
 
-    private Integer refCategoryCode;
+    private  Integer refCategoryCode;
+    @OneToMany(mappedBy = "category")//mappedBy :진짜 연관관계의 필드명을 작성해준다.
+    private List<Menu> menuList;//카테고리쪽에서 메뉴를 참조한다는 필드 작성
 
     public Category() {
     }
 
-    public Category(int categoryCode, String categoryName, Integer refCategoryCode) {
+    public Category(int categoryCode, String categoryName, Integer refCategoryCode, List<Menu> menuList) {
         this.categoryCode = categoryCode;
         this.categoryName = categoryName;
         this.refCategoryCode = refCategoryCode;
+        this.menuList = menuList;
     }
 
     public int getCategoryCode() {
@@ -48,6 +52,14 @@ public class Category {
         this.refCategoryCode = refCategoryCode;
     }
 
+    public List<Menu> getMenuList() {
+        return menuList;
+    }
+
+    public void setMenuList(List<Menu> menuList) {
+        this.menuList = menuList;
+    }
+
     @Override
     public String toString() {
         return "Category{" +
@@ -57,4 +69,3 @@ public class Category {
                 '}';
     }
 }
-
